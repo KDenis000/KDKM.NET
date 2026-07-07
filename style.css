@@ -35,6 +35,11 @@ font-size:32px;
 font-weight:bold;
 color:#FFD700;
 }
+.logo img{
+    width:120px;
+    height:auto;
+    object-fit:contain;
+}
 
 .logo span{
 color:#fff;
