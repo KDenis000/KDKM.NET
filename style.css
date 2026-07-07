@@ -1,4 +1,4 @@
-/* Global Reset */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +17,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 15px 25px;
   background: #111;
   box-shadow: 0 0 10px gold;
   position: sticky;
@@ -26,13 +26,17 @@ header {
 }
 
 .logo {
-  font-size: 26px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
   font-weight: bold;
   color: gold;
 }
 
-.logo span {
-  color: #fff;
+.logo img {
+  height: 50px;
+  width: auto;
 }
 
 nav ul {
@@ -72,7 +76,7 @@ nav a:hover {
   font-weight: 500;
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
   background: url('images/hero.jpg') center/cover no-repeat;
   height: 500px;
@@ -218,5 +222,8 @@ footer {
   }
   .hero-content h1 {
     font-size: 32px;
+  }
+  .logo img {
+    height: 40px;
   }
 }
