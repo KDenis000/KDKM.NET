@@ -3,92 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDK M.NET | Watch Movies Online</title>
 
-    <title>KDK M.NET | Movies</title>
-
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
 
+<!-- Navigation -->
 <header>
 
-    <div class="logo-area">
-        <img src="images/logo.png" alt="KDK M.NET Logo">
-        <h1>KDK M.NET</h1>
-    </div>
+<div class="logo">
+    KDK <span>M.NET</span>
+</div>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Movies</a>
-        <a href="#">Top Rated</a>
-        <a href="#">New Releases</a>
-        <a href="#">Coming Soon</a>
-    </nav>
+<nav>
+
+<ul>
+
+<li><a href="#">Home</a></li>
+<li><a href="movies.html">Movies</a></li>
+<li><a href="#">TV Series</a></li>
+<li><a href="#">Top Rated</a></li>
+<li><a href="#">New Releases</a></li>
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+</nav>
+
+<div class="search">
+
+<input type="text" placeholder="Search movies...">
+
+<button>
+<i class="fa fa-search"></i>
+</button>
+
+</div>
+
+<div class="login">
+
+<a href="login.html">Login</a>
+
+</div>
 
 </header>
 
+<!-- Hero -->
 
 <section class="hero">
 
-    <div class="hero-text">
+<div class="overlay">
 
-        <h2>Unlimited Movies, Anytime</h2>
+<div class="hero-content">
 
-        <p>
-        Watch your favorite action, adventure and entertainment movies
-        on KDK M.NET.
-        </p>
+<h1>Unlimited Movies,<br>Unlimited Entertainment</h1>
 
-        <button>Start Watching</button>
+<p>
+Watch the latest movies anytime,
+anywhere in HD quality.
+</p>
 
-    </div>
+<div class="buttons">
 
-</section>
+<a href="#" class="watch">Watch Now</a>
 
+<a href="#" class="download">Download</a>
 
-<section class="movies">
-
-<h2>🔥 Top Rated Movies</h2>
-
-
-<div class="movie-container">
-
-
-<div class="card">
-<img src="https://via.placeholder.com/200x280">
-<h3>Action Movie</h3>
-<button>Watch Now</button>
 </div>
 
-
-<div class="card">
-<img src="https://via.placeholder.com/200x280">
-<h3>New Release</h3>
-<button>Watch Now</button>
 </div>
-
-
-<div class="card">
-<img src="https://via.placeholder.com/200x280">
-<h3>Adventure</h3>
-<button>Watch Now</button>
-</div>
-
 
 </div>
 
 </section>
 
+<!-- Trending -->
+
+<section class="section">
+
+<h2>🔥 Trending Movies</h2>
+
+<div class="movies">
+
+<div class="movie">
+
+<img src="images/movie1.jpg">
+
+<h3>Movie One</h3>
+
+<p>⭐⭐⭐⭐☆</p>
+
+<button>Watch</button>
+
+</div>
+
+<div class="movie">
+
+<img src="images/movie2.jpg">
+
+<h3>Movie Two</h3>
+
+<p>⭐⭐⭐⭐⭐</p>
+
+<button>Watch</button>
+
+</div>
+
+<div class="movie">
+
+<img src="images/movie3.jpg">
+
+<h3>Movie Three</h3>
+
+<p>⭐⭐⭐☆☆</p>
+
+<button>Watch</button>
+
+</div>
+
+<div class="movie">
+
+<img src="images/movie4.jpg">
+
+<h3>Movie Four</h3>
+
+<p>⭐⭐⭐⭐☆</p>
+
+<button>Watch</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Categories -->
+
+<section class="section">
+
+<h2>Browse Categories</h2>
+
+<div class="categories">
+
+<div>🎬 Action</div>
+
+<div>😂 Comedy</div>
+
+<div>👻 Horror</div>
+
+<div>❤️ Romance</div>
+
+<div>🚀 Sci-Fi</div>
+
+<div>🧙 Fantasy</div>
+
+<div>🔫 Crime</div>
+
+<div>🎭 Drama</div>
+
+</div>
+
+</section>
+
+<!-- Latest -->
+
+<section class="section">
+
+<h2>Latest Uploads</h2>
+
+<div class="movies">
+
+<div class="movie">
+
+<img src="images/movie5.jpg">
+
+<h3>Movie Five</h3>
+
+<button>Watch</button>
+
+</div>
+
+<div class="movie">
+
+<img src="images/movie6.jpg">
+
+<h3>Movie Six</h3>
+
+<button>Watch</button>
+
+</div>
+
+<div class="movie">
+
+<img src="images/movie7.jpg">
+
+<h3>Movie Seven</h3>
+
+<button>Watch</button>
+
+</div>
+
+<div class="movie">
+
+<img src="images/movie8.jpg">
+
+<h3>Movie Eight</h3>
+
+<button>Watch</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Footer -->
 
 <footer>
 
+<div class="footer-logo">
+
+KDK M.NET
+
+</div>
+
 <p>
-© 2026 KDK M.NET | KDK JAJAWO MEDIA COMPANY
+
+The home of unlimited entertainment.
+
+</p>
+
+<div class="social">
+
+<i class="fab fa-facebook"></i>
+
+<i class="fab fa-instagram"></i>
+
+<i class="fab fa-youtube"></i>
+
+<i class="fab fa-tiktok"></i>
+
+</div>
+
+<p>
+
+© 2026 KDK M.NET. All Rights Reserved.
+
 </p>
 
 </footer>
-
 
 <script src="script.js"></script>
 
