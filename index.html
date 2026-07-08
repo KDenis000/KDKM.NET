@@ -1,124 +1,679 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KDKM.NET - Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #111; color: #fff; overflow-x: hidden; }
-        a { text-decoration: none; color: #fff; }
-        
-        /* Navbar & Mobile Menu */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 6%; background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 28px; font-weight: bold; color: #e50914; letter-spacing: 1px; }
-        .nav-links { list-style: none; display: flex; gap: 20px; align-items: center; }
-        .nav-links a:hover { color: #e50914; transition: 0.3s; }
-        .btn-login { background: #e50914; padding: 7px 15px; border-radius: 4px; }
-        .menu-toggle { display: none; font-size: 24px; cursor: pointer; }
-
-        /* Carousel Hero Section */
-        .carousel-container { position: relative; height: 75vh; width: 100%; overflow: hidden; }
-        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease-in-out; display: flex; flex-direction: column; justify-content: center; padding-left: 6%; background-size: cover; background-position: center; }
-        .slide.active { opacity: 1; z-index: 1; }
-        .slide::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(rgba(0,0,0,0.2), rgba(17,17,17,1)); z-index: -1; }
-        .slide h1 { font-size: 50px; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
-        .slide p { font-size: 18px; max-width: 600px; margin-bottom: 20px; color: #ccc; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
-        .btn-main { background: #e50914; padding: 12px 25px; font-weight: bold; border-radius: 4px; display: inline-block; width: max-content; }
-
-        /* Movie Grid */
-        .main-container { padding: 40px 6%; }
-        .section-title { font-size: 24px; margin-bottom: 20px; border-left: 4px solid #e50914; padding-left: 10px; }
-        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-        .movie-card { background: #222; border-radius: 8px; overflow: hidden; transition: transform 0.3s; cursor: pointer; }
-        .movie-card:hover { transform: scale(1.05); }
-        .movie-card img { width: 100%; height: 280px; object-fit: cover; }
-        .movie-info { padding: 15px; }
-        .movie-info h4 { font-size: 16px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .rating { color: #f5c518; font-size: 14px; }
-
-        /* Modal Popup System */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { background: #181818; max-width: 600px; width: 100%; border-radius: 8px; overflow: hidden; position: relative; animation: fadeIn 0.4s; }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #fff; z-index: 10; }
-        .modal-img { width: 100%; height: 250px; object-fit: cover; }
-        .modal-body { padding: 25px; }
-        .modal-body h3 { font-size: 24px; margin-bottom: 10px; color: #e50914; }
-        .modal-body p { color: #bbb; line-height: 1.6; margin-bottom: 20px; }
-
-        footer { text-align: center; padding: 30px; background: #000; color: #666; font-size: 14px; margin-top: 40px; }
-
-        /* Mobile Breakpoints */
-        @media (max-width: 768px) {
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: #000; padding: 20px; gap: 15px; text-align: center; }
-            .nav-links.active { display: flex; }
-            .menu-toggle { display: block; }
-            .slide h1 { font-size: 32px; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KDKM.NET — Movies & Downloads</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe',
+              300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6',
+              600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af',
+              900: '#1e3a8a', 950: '#172554'
+            },
+            slate: { 850: '#151f2e' }
+          },
+          letterSpacing: { tighter: '-0.04em', tight: '-0.02em' }
         }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0F172A; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+    /* Hero gradient overlay */
+    .hero-overlay {
+      background: linear-gradient(to bottom, rgba(15,23,42,0.5) 0%, rgba(15,23,42,0.7) 50%, #0F172A 100%);
+    }
+
+    /* Card hover shine */
+    .movie-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
+      transform: skewX(-25deg);
+      transition: left 0.6s ease;
+      z-index: 1;
+    }
+    .movie-card:hover::before { left: 125%; }
+
+    /* Toast animation */
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOutRight {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+    .toast-in { animation: slideInRight 0.3s ease forwards; }
+    .toast-out { animation: slideOutRight 0.3s ease forwards; }
+
+    /* Pulse glow for live badge */
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(239,68,68,0); }
+    }
+    .pulse-glow { animation: pulseGlow 2s infinite; }
+
+    /* Star rating */
+    .star-filled { color: #facc15; }
+    .star-empty { color: #475569; }
+  </style>
 </head>
-<body>
+<body class="bg-slate-900 text-white font-sans antialiased">
 
-    <nav>
-        <div class="logo">KDKM.NET</div>
-        <div class="menu-toggle" id="mobileMenu"><i class="fas fa-bars"></i></div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="movies.html">Movies</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html" class="btn-login">Login</a></li>
-        </ul>
-    </nav>
+  <!-- ============ TOAST CONTAINER ============ -->
+  <div id="toast-container" class="fixed top-20 right-4 z-[100] flex flex-col gap-3"></div>
 
-    <div class="carousel-container">
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925');">
-            <h1>Unlimited Movies & Downloads</h1>
-            <p>Discover blockbuster releases, trending shows, and complete seasons safely.</p>
-            <a href="movies.html" class="btn-main">Explore Now</a>
+  <!-- ============ NAVBAR ============ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300" style="background:rgba(15,23,42,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(51,65,85,0.5);">
+    <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-sm tracking-tight group-hover:bg-brand-500 transition-colors duration-150">K</div>
+        <span class="text-lg font-semibold tracking-tight">KDKM<span class="text-brand-400">.NET</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home" class="text-sm font-medium text-white hover:text-brand-400 transition-colors duration-150">Home</a>
+        <a href="#movies" class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors duration-150">Movies</a>
+        <a href="#tvshows" class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors duration-150">TV Shows</a>
+        <a href="#toprated" class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors duration-150">Top Rated</a>
+        <a href="#latest" class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors duration-150">Latest</a>
+      </div>
+
+      <!-- Right side -->
+      <div class="flex items-center gap-3">
+        <!-- Search Toggle -->
+        <button onclick="toggleSearch()" class="w-9 h-9 rounded-lg flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-150">
+          <iconify-icon icon="lucide:search" width="18"></iconify-icon>
+        </button>
+        <!-- Theme hint -->
+        <div class="hidden md:flex items-center gap-1.5 text-xs text-slate-500">
+          <iconify-icon icon="lucide:cloud" width="14"></iconify-icon>
+          <span>GitHub Pages</span>
         </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1478720143033-6a972678da30?q=80&w=1920');">
-            <h1>Action & Sci-Fi Thrillers</h1>
-            <p>Get instant source links to high-definition downloads in seconds.</p>
-            <a href="movies.html" class="btn-main">View Library</a>
-        </div>
+        <!-- Mobile Menu -->
+        <button onclick="toggleMobileMenu()" class="md:hidden w-9 h-9 rounded-lg flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-150">
+          <iconify-icon icon="lucide:menu" width="20" id="menu-icon"></iconify-icon>
+        </button>
+      </div>
     </div>
+  </nav>
 
-    <div class="main-container">
-        <h2 class="section-title">Trending Now</h2>
-        <div class="movie-grid">
-            <div class="movie-card" onclick="openPreview('Lost in Space', 'A deep space crew encounters an uncharted anomalies while traveling out of bounds.', 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1947')">
-                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1947" alt="Movie Poster">
-                <div class="movie-info">
-                    <h4>Lost in Space</h4>
-                    <div class="rating">⭐ 9.1</div>
-                </div>
-            </div>
-            <div class="movie-card" onclick="openPreview('The Cyber Realm', 'An underground coding mastermind tests boundaries inside an interactive simulation.', 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1974')">
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1974" alt="Movie Poster">
-                <div class="movie-info">
-                    <h4>The Cyber Realm</h4>
-                    <div class="rating">⭐ 7.9</div>
-                </div>
-            </div>
-        </div>
+  <!-- ============ SEARCH OVERLAY ============ -->
+  <div id="search-overlay" class="fixed inset-0 z-[60] hidden" style="background:rgba(2,6,23,0.85);backdrop-filter:blur(8px);">
+    <div class="max-w-2xl mx-auto pt-32 px-6">
+      <div class="relative">
+        <iconify-icon icon="lucide:search" width="22" class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></iconify-icon>
+        <input id="search-input" type="text" placeholder="Search movies, TV shows, genres..." 
+          class="w-full h-14 pl-12 pr-12 bg-slate-800 border border-slate-700 rounded-xl text-white text-lg placeholder:text-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-150"
+          oninput="handleSearch(this.value)" />
+        <button onclick="toggleSearch()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1">
+          <iconify-icon icon="lucide:x" width="20"></iconify-icon>
+        </button>
+      </div>
+      <div id="search-results" class="mt-4 max-h-96 overflow-y-auto"></div>
     </div>
+  </div>
 
-    <div class="modal" id="previewModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closePreview()">&times;</span>
-            <img id="modalImg" class="modal-img" src="" alt="Banner">
-            <div class="modal-body">
-                <h3 id="modalTitle">Movie Title</h3>
-                <p id="modalDesc">Movie description context goes here.</p>
-                <a href="movies.html" class="btn-main">Go to Downloads</a>
-            </div>
-        </div>
+  <!-- ============ MOBILE MENU ============ -->
+  <div id="mobile-menu" class="fixed inset-0 z-[55] hidden" style="background:rgba(2,6,23,0.95);backdrop-filter:blur(12px);">
+    <div class="pt-24 px-8 flex flex-col gap-6">
+      <a href="#home" onclick="toggleMobileMenu()" class="text-2xl font-semibold text-white hover:text-brand-400 transition-colors">Home</a>
+      <a href="#movies" onclick="toggleMobileMenu()" class="text-2xl font-semibold text-slate-300 hover:text-brand-400 transition-colors">Movies</a>
+      <a href="#tvshows" onclick="toggleMobileMenu()" class="text-2xl font-semibold text-slate-300 hover:text-brand-400 transition-colors">TV Shows</a>
+      <a href="#toprated" onclick="toggleMobileMenu()" class="text-2xl font-semibold text-slate-300 hover:text-brand-400 transition-colors">Top Rated</a>
+      <a href="#latest" onclick="toggleMobileMenu()" class="text-2xl font-semibold text-slate-300 hover:text-brand-400 transition-colors">Latest</a>
     </div>
+  </div>
 
-    <footer>&copy; 2026 KDKM.NET. Powered by GitHub.</footer>
+  <!-- ============ HERO SECTION ============ -->
+  <section id="home" class="relative min-h-[700px] h-screen flex items-center overflow-hidden">
+    <img src="https://picsum.photos/seed/cinema-hero-dark/1920/1080.jpg" alt="Featured Movie" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 w-full pt-16">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-red-500/20 border border-red-500/30 rounded-full text-xs font-semibold text-red-400 uppercase tracking-wider pulse-glow">
+            <iconify-icon icon="lucide:flame" width="12"></iconify-icon>
+            Trending
+          </span>
+          <span class="text-slate-400 text-sm">2025</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">
+          The Dark<br/><span class="text-brand-400">Horizon</span>
+        </h1>
+        <p class="text-slate-300 text-lg leading-relaxed mb-4 max-w-lg">
+          A rogue astronaut discovers a gateway to another dimension at the edge of the solar system. Now she must choose between saving humanity and saving herself.
+        </p>
+        <div class="flex items-center gap-4 text-sm text-slate-400 mb-8">
+          <span class="flex items-center gap-1"><iconify-icon icon="lucide:star" width="14" class="text-yellow-400"></iconify-icon> 8.7</span>
+          <span>2h 34min</span>
+          <span class="px-2 py-0.5 border border-slate-600 rounded text-xs">Sci-Fi</span>
+          <span class="px-2 py-0.5 border border-slate-600 rounded text-xs">Thriller</span>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <button onclick="showToast('Download started! The Dark Horizon (1080p)', 'success')" 
+            class="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition-all duration-150"
+            style="box-shadow:0 10px 15px -3px rgba(59,130,246,0.3);">
+            <iconify-icon icon="lucide:download" width="18"></iconify-icon>
+            Download Now
+          </button>
+          <button onclick="showToast('Streaming is not available yet. Stay tuned!', 'info')" 
+            class="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/20 transition-all duration-150">
+            <iconify-icon icon="lucide:play" width="18"></iconify-icon>
+            Watch Trailer
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+      <iconify-icon icon="lucide:chevron-down" width="24" class="text-slate-400"></iconify-icon>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- ============ CATEGORY FILTER ============ -->
+  <section class="relative z-10 -mt-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="bg-slate-800/60 border border-slate-700/50 rounded-2xl p-4 flex flex-wrap items-center gap-2" style="backdrop-filter:blur(8px);">
+        <span class="text-xs text-slate-400 font-medium mr-2 uppercase tracking-wider">Filter:</span>
+        <button onclick="filterMovies('all')" class="filter-btn active px-4 py-2 rounded-lg text-sm font-medium bg-brand-600 text-white transition-all duration-150" data-filter="all">All</button>
+        <button onclick="filterMovies('action')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-all duration-150" data-filter="action">Action</button>
+        <button onclick="filterMovies('comedy')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-all duration-150" data-filter="comedy">Comedy</button>
+        <button onclick="filterMovies('drama')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-all duration-150" data-filter="drama">Drama</button>
+        <button onclick="filterMovies('horror')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-all duration-150" data-filter="horror">Horror</button>
+        <button onclick="filterMovies('scifi')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-all duration-150" data-filter="scifi">Sci-Fi</button>
+        <button onclick="filterMovies('thriller')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-all duration-150" data-filter="thriller">Thriller</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOVIES GRID ============ -->
+  <section id="movies" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <p class="text-xs font-semibold text-brand-400 uppercase tracking-widest mb-2">Collection</p>
+          <h2 class="text-3xl font-semibold tracking-tight">Popular Movies</h2>
+        </div>
+        <a href="#" class="hidden md:flex items-center gap-1.5 text-sm text-brand-400 hover:text-brand-300 font-medium transition-colors duration-150">
+          View All <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
+        </a>
+      </div>
+
+      <div id="movies-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+        <!-- Movies are injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TV SHOWS ============ -->
+  <section id="tvshows" class="py-20 bg-slate-850">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <p class="text-xs font-semibold text-brand-400 uppercase tracking-widest mb-2">Binge-Worthy</p>
+          <h2 class="text-3xl font-semibold tracking-tight">TV Shows</h2>
+        </div>
+        <a href="#" class="hidden md:flex items-center gap-1.5 text-sm text-brand-400 hover:text-brand-300 font-medium transition-colors duration-150">
+          View All <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
+        </a>
+      </div>
+
+      <div id="tv-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+        <!-- TV shows injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TOP RATED ============ -->
+  <section id="toprated" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <p class="text-xs font-semibold text-brand-400 uppercase tracking-widest mb-2">Highest Rated</p>
+          <h2 class="text-3xl font-semibold tracking-tight">Top Rated</h2>
+        </div>
+      </div>
+
+      <div id="toprated-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Top rated injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LATEST DOWNLOADS ============ -->
+  <section id="latest" class="py-20 bg-slate-850">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <p class="text-xs font-semibold text-brand-400 uppercase tracking-widest mb-2">Just Added</p>
+          <h2 class="text-3xl font-semibold tracking-tight">Latest Uploads</h2>
+        </div>
+      </div>
+
+      <div id="latest-list" class="flex flex-col gap-4">
+        <!-- Latest uploads injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA / NEWSLETTER ============ -->
+  <section class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-900/40 to-brand-700/40"></div>
+    <img src="https://picsum.photos/seed/cinema-cta/1920/600.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-20" />
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/10 border border-brand-500/20 rounded-full text-xs font-semibold text-brand-400 uppercase tracking-widest mb-6">
+        <iconify-icon icon="lucide:bell" width="14"></iconify-icon>
+        Stay Updated
+      </div>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mb-4">Never Miss a New Release</h2>
+      <p class="text-slate-300 leading-relaxed mb-8">Get notified when we add new movies and shows. No spam, just the latest downloads straight to your inbox.</p>
+      <form onsubmit="handleSubscribe(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input id="email-input" type="email" required placeholder="Enter your email" class="flex-1 h-12 px-4 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-150" />
+        <button type="submit" class="h-12 px-6 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition-all duration-150" style="box-shadow:0 10px 15px -3px rgba(59,130,246,0.3);">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-10 mb-10">
+        <!-- Brand -->
+        <div class="md:col-span-1">
+          <a href="#" class="flex items-center gap-2.5 mb-4">
+            <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">K</div>
+            <span class="text-lg font-semibold tracking-tight">KDKM<span class="text-brand-400">.NET</span></span>
+          </a>
+          <p class="text-slate-400 text-sm leading-relaxed">Your go-to source for movies and TV show downloads. Fast, free, and always updated.</p>
+        </div>
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">Quick Links</h4>
+          <div class="flex flex-col gap-2.5">
+            <a href="#home" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">Home</a>
+            <a href="#movies" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">Movies</a>
+            <a href="#tvshows" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">TV Shows</a>
+            <a href="#toprated" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">Top Rated</a>
+          </div>
+        </div>
+        <!-- Genres -->
+        <div>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">Genres</h4>
+          <div class="flex flex-col gap-2.5">
+            <a href="#" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">Action</a>
+            <a href="#" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">Comedy</a>
+            <a href="#" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">Drama</a>
+            <a href="#" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">Sci-Fi</a>
+          </div>
+        </div>
+        <!-- Legal -->
+        <div>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">Legal</h4>
+          <div class="flex flex-col gap-2.5">
+            <a href="#" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">DMCA</a>
+            <a href="#" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">Privacy Policy</a>
+            <a href="#" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">Terms of Service</a>
+            <a href="#" class="text-sm text-slate-400 hover:text-brand-400 transition-colors duration-150">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-500">&copy; 2025 KDKM.NET. All rights reserved. Hosted on GitHub Pages.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-slate-500 hover:text-brand-400 transition-colors duration-150"><iconify-icon icon="lucide:github" width="18"></iconify-icon></a>
+          <a href="#" class="text-slate-500 hover:text-brand-400 transition-colors duration-150"><iconify-icon icon="lucide:twitter" width="18"></iconify-icon></a>
+          <a href="#" class="text-slate-500 hover:text-brand-400 transition-colors duration-150"><iconify-icon icon="lucide:mail" width="18"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // ======== MOVIE DATA ========
+    const movies = [
+      { id:1, title:"The Dark Horizon", year:2025, rating:8.7, genre:"scifi", quality:"4K", size:"3.2 GB", seed:"movie-dark-horizon" },
+      { id:2, title:"Neon Requiem", year:2025, rating:7.9, genre:"action", quality:"1080p", size:"2.1 GB", seed:"movie-neon-requiem" },
+      { id:3, title:"Echoes of Silence", year:2024, rating:8.3, genre:"drama", quality:"1080p", size:"1.8 GB", seed:"movie-echoes-silence" },
+      { id:4, title:"Frostbite", year:2025, rating:7.2, genre:"horror", quality:"720p", size:"1.1 GB", seed:"movie-frostbite" },
+      { id:5, title:"Parallax", year:2024, rating:8.5, genre:"scifi", quality:"4K", size:"4.0 GB", seed:"movie-parallax" },
+      { id:6, title:"Midnight Run", year:2025, rating:7.6, genre:"action", quality:"1080p", size:"2.3 GB", seed:"movie-midnight-run" },
+      { id:7, title:"The Laughing Man", year:2024, rating:8.1, genre:"comedy", quality:"1080p", size:"1.9 GB", seed:"movie-laughing-man" },
+      { id:8, title:"Crimson Tide II", year:2025, rating:7.8, genre:"thriller", quality:"4K", size:"3.5 GB", seed:"movie-crimson-tide" },
+      { id:9, title:"Stardust Memories", year:2024, rating:8.9, genre:"drama", quality:"1080p", size:"2.0 GB", seed:"movie-stardust" },
+      { id:10, title:"Apex Predator", year:2025, rating:7.4, genre:"horror", quality:"720p", size:"1.3 GB", seed:"movie-apex-predator" },
+    ];
+
+    const tvShows = [
+      { id:1, title:"Broken Kingdom", year:2025, rating:9.1, genre:"drama", seasons:3, quality:"1080p", size:"14.2 GB", seed:"tv-broken-kingdom" },
+      { id:2, title:"Void Walker", year:2024, rating:8.8, genre:"scifi", seasons:2, quality:"4K", size:"22.5 GB", seed:"tv-void-walker" },
+      { id:3, title:"The Syndicate", year:2025, rating:8.5, genre:"thriller", seasons:1, quality:"1080p", size:"8.1 GB", seed:"tv-syndicate" },
+      { id:4, title:"Office Wars", year:2024, rating:8.0, genre:"comedy", seasons:4, quality:"720p", size:"11.3 GB", seed:"tv-office-wars" },
+      { id:5, title:"Dead Signal", year:2025, rating:7.9, genre:"horror", seasons:2, quality:"1080p", size:"16.7 GB", seed:"tv-dead-signal" },
+    ];
+
+    const latestUploads = [
+      { title:"The Dark Horizon", type:"Movie", time:"2 hours ago", quality:"4K", size:"3.2 GB", genre:"scifi", seed:"movie-dark-horizon" },
+      { title:"Broken Kingdom S03E08", type:"TV", time:"5 hours ago", quality:"1080p", size:"850 MB", genre:"drama", seed:"tv-broken-kingdom" },
+      { title:"Neon Requiem", type:"Movie", time:"8 hours ago", quality:"1080p", size:"2.1 GB", genre:"action", seed:"movie-neon-requiem" },
+      { title:"The Syndicate S01E04", type:"TV", time:"12 hours ago", quality:"1080p", size:"780 MB", genre:"thriller", seed:"tv-syndicate" },
+      { title:"Frostbite", type:"Movie", time:"1 day ago", quality:"720p", size:"1.1 GB", genre:"horror", seed:"movie-frostbite" },
+    ];
+
+    // ======== RENDER FUNCTIONS ========
+    function renderStars(rating) {
+      const full = Math.round(rating / 2);
+      let html = '';
+      for (let i = 1; i <= 5; i++) {
+        html += `<iconify-icon icon="lucide:star" width="12" class="${i <= full ? 'star-filled' : 'star-empty'}"></iconify-icon>`;
+      }
+      return html;
+    }
+
+    function qualityBadge(quality) {
+      const colors = { '4K': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30', '1080p': 'bg-brand-500/20 text-brand-400 border-brand-500/30', '720p': 'bg-slate-500/20 text-slate-400 border-slate-500/30' };
+      return `<span class="px-2 py-0.5 text-[10px] font-bold rounded border ${colors[quality] || colors['720p']}">${quality}</span>`;
+    }
+
+    function renderMovieCard(movie) {
+      return `
+        <div class="movie-card relative group cursor-pointer" data-genre="${movie.genre}" onclick="showToast('Preparing download: ${movie.title} (${movie.quality})', 'success')">
+          <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-slate-800">
+            <img src="https://picsum.photos/seed/${movie.seed}/400/600.jpg" alt="${movie.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <!-- Overlay on hover -->
+            <div class="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="flex items-center gap-2 mb-2">
+                ${qualityBadge(movie.quality)}
+                <span class="text-xs text-slate-400">${movie.size}</span>
+              </div>
+              <button class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors duration-150">
+                <iconify-icon icon="lucide:download" width="16"></iconify-icon>
+                Download
+              </button>
+            </div>
+            <!-- Rating badge -->
+            <div class="absolute top-2 right-2 flex items-center gap-1 px-2 py-1 bg-black/60 rounded-lg text-xs font-semibold" style="backdrop-filter:blur(4px);">
+              <iconify-icon icon="lucide:star" width="11" class="text-yellow-400"></iconify-icon>
+              ${movie.rating}
+            </div>
+          </div>
+          <div class="mt-3 px-0.5">
+            <h3 class="text-sm font-medium text-white truncate group-hover:text-brand-400 transition-colors duration-150">${movie.title}</h3>
+            <p class="text-xs text-slate-500 mt-0.5">${movie.year} · ${movie.genre.charAt(0).toUpperCase() + movie.genre.slice(1)}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderTVCard(show) {
+      return `
+        <div class="movie-card relative group cursor-pointer" data-genre="${show.genre}" onclick="showToast('Preparing download: ${show.title} Complete S${show.seasons} (${show.quality})', 'success')">
+          <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-slate-800">
+            <img src="https://picsum.photos/seed/${show.seed}/400/600.jpg" alt="${show.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="flex items-center gap-2 mb-2">
+                ${qualityBadge(show.quality)}
+                <span class="text-xs text-slate-400">${show.seasons} Season${show.seasons > 1 ? 's' : ''}</span>
+              </div>
+              <button class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors duration-150">
+                <iconify-icon icon="lucide:download" width="16"></iconify-icon>
+                Download All
+              </button>
+            </div>
+            <div class="absolute top-2 left-2 px-2 py-1 bg-brand-600/80 rounded-lg text-[10px] font-bold uppercase text-white" style="backdrop-filter:blur(4px);">TV</div>
+            <div class="absolute top-2 right-2 flex items-center gap-1 px-2 py-1 bg-black/60 rounded-lg text-xs font-semibold" style="backdrop-filter:blur(4px);">
+              <iconify-icon icon="lucide:star" width="11" class="text-yellow-400"></iconify-icon>
+              ${show.rating}
+            </div>
+          </div>
+          <div class="mt-3 px-0.5">
+            <h3 class="text-sm font-medium text-white truncate group-hover:text-brand-400 transition-colors duration-150">${show.title}</h3>
+            <p class="text-xs text-slate-500 mt-0.5">${show.year} · ${show.seasons} Season${show.seasons > 1 ? 's' : ''} · ${show.size}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderTopRatedCard(movie, rank) {
+      return `
+        <div class="flex gap-4 p-4 bg-slate-800/50 border border-slate-700/50 rounded-xl hover:border-brand-500/30 transition-all duration-300 cursor-pointer group" onclick="showToast('Opening ${movie.title}...', 'info')">
+          <div class="relative w-20 h-28 flex-shrink-0 rounded-lg overflow-hidden">
+            <img src="https://picsum.photos/seed/${movie.seed}/200/300.jpg" alt="${movie.title}" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute top-1 left-1 w-6 h-6 bg-brand-600 rounded flex items-center justify-center text-xs font-bold">${rank}</div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3 class="font-medium text-white group-hover:text-brand-400 transition-colors duration-150 truncate">${movie.title}</h3>
+            <div class="flex items-center gap-1 mt-1">${renderStars(movie.rating)} <span class="text-xs text-slate-400 ml-1">${movie.rating}</span></div>
+            <p class="text-xs text-slate-500 mt-1">${movie.year} · ${movie.genre.charAt(0).toUpperCase() + movie.genre.slice(1)}</p>
+            <div class="flex items-center gap-2 mt-3">
+              ${qualityBadge(movie.quality)}
+              <span class="text-xs text-slate-500">${movie.size}</span>
+            </div>
+          </div>
+          <button onclick="event.stopPropagation(); showToast('Downloading ${movie.title} (${movie.quality})', 'success')" class="self-center p-2.5 rounded-lg bg-brand-600/10 text-brand-400 hover:bg-brand-600 hover:text-white transition-all duration-150">
+            <iconify-icon icon="lucide:download" width="18"></iconify-icon>
+          </button>
+        </div>
+      `;
+    }
+
+    function renderLatestRow(item) {
+      return `
+        <div class="flex items-center gap-4 p-4 bg-slate-800/30 border border-slate-700/30 rounded-xl hover:border-brand-500/30 transition-all duration-300 cursor-pointer group" onclick="showToast('Preparing download: ${item.title}', 'success')">
+          <div class="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-400 transition-colors duration-150 flex-shrink-0">
+            <iconify-icon icon="${item.type === 'TV' ? 'lucide:tv' : 'lucide:film'}" width="22"></iconify-icon>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="text-sm font-medium text-white truncate group-hover:text-brand-400 transition-colors duration-150">${item.title}</h4>
+            <p class="text-xs text-slate-500">${item.type} · ${item.genre.charAt(0).toUpperCase() + item.genre.slice(1)} · ${item.time}</p>
+          </div>
+          <div class="hidden sm:flex items-center gap-3">
+            ${qualityBadge(item.quality)}
+            <span class="text-xs text-slate-400">${item.size}</span>
+          </div>
+          <button onclick="event.stopPropagation(); showToast('Downloading ${item.title}...', 'success')" class="p-2 rounded-lg text-slate-400 hover:text-brand-400 hover:bg-slate-700 transition-all duration-150">
+            <iconify-icon icon="lucide:download" width="18"></iconify-icon>
+          </button>
+        </div>
+      `;
+    }
+
+    // ======== INIT RENDER ========
+    function renderMoviesGrid(filter = 'all') {
+      const grid = document.getElementById('movies-grid');
+      const filtered = filter === 'all' ? movies : movies.filter(m => m.genre === filter);
+      grid.innerHTML = filtered.map(m => renderMovieCard(m)).join('');
+    }
+
+    function init() {
+      renderMoviesGrid();
+      document.getElementById('tv-grid').innerHTML = tvShows.map(s => renderTVCard(s)).join('');
+      
+      const topRated = [...movies].sort((a, b) => b.rating - a.rating).slice(0, 6);
+      document.getElementById('toprated-grid').innerHTML = topRated.map((m, i) => renderTopRatedCard(m, i + 1)).join('');
+      
+      document.getElementById('latest-list').innerHTML = latestUploads.map(l => renderLatestRow(l)).join('');
+    }
+
+    init();
+
+    // ======== FILTER ========
+    function filterMovies(genre) {
+      renderMoviesGrid(genre);
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.dataset.filter === genre) {
+          btn.classList.add('bg-brand-600', 'text-white');
+          btn.classList.remove('text-slate-300');
+        } else {
+          btn.classList.remove('bg-brand-600', 'text-white');
+          btn.classList.add('text-slate-300');
+        }
+      });
+    }
+
+    // ======== SEARCH ========
+    function toggleSearch() {
+      const overlay = document.getElementById('search-overlay');
+      const input = document.getElementById('search-input');
+      if (overlay.classList.contains('hidden')) {
+        overlay.classList.remove('hidden');
+        setTimeout(() => input.focus(), 100);
+      } else {
+        overlay.classList.add('hidden');
+        input.value = '';
+        document.getElementById('search-results').innerHTML = '';
+      }
+    }
+
+    function handleSearch(query) {
+      const results = document.getElementById('search-results');
+      if (!query.trim()) { results.innerHTML = ''; return; }
+      
+      const q = query.toLowerCase();
+      const matchedMovies = movies.filter(m => m.title.toLowerCase().includes(q) || m.genre.includes(q));
+      const matchedTV = tvShows.filter(s => s.title.toLowerCase().includes(q) || s.genre.includes(q));
+      
+      if (!matchedMovies.length && !matchedTV.length) {
+        results.innerHTML = `<div class="text-center py-8 text-slate-500">No results found for "${query}"</div>`;
+        return;
+      }
+      
+      let html = '';
+      matchedMovies.forEach(m => {
+        html += `
+          <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-800 cursor-pointer transition-colors duration-150" onclick="toggleSearch(); showToast('Opening ${m.title}...', 'info')">
+            <img src="https://picsum.photos/seed/${m.seed}/100/150.jpg" class="w-10 h-14 rounded-lg object-cover" alt="${m.title}" />
+            <div class="flex-1">
+              <p class="text-sm font-medium text-white">${m.title}</p>
+              <p class="text-xs text-slate-500">Movie · ${m.year} · ⭐ ${m.rating}</p>
+            </div>
+            ${qualityBadge(m.quality)}
+          </div>
+        `;
+      });
+      matchedTV.forEach(s => {
+        html += `
+          <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-800 cursor-pointer transition-colors duration-150" onclick="toggleSearch(); showToast('Opening ${s.title}...', 'info')">
+            <img src="https://picsum.photos/seed/${s.seed}/100/150.jpg" class="w-10 h-14 rounded-lg object-cover" alt="${s.title}" />
+            <div class="flex-1">
+              <p class="text-sm font-medium text-white">${s.title}</p>
+              <p class="text-xs text-slate-500">TV Show · ${s.year} · ⭐ ${s.rating}</p>
+            </div>
+            ${qualityBadge(s.quality)}
+          </div>
+        `;
+      });
+      results.innerHTML = html;
+    }
+
+    // Keyboard shortcut
+    document.addEventListener('keydown', e => {
+      if (e.key === '/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        toggleSearch();
+      }
+      if (e.key === 'Escape') {
+        const overlay = document.getElementById('search-overlay');
+        if (!overlay.classList.contains('hidden')) toggleSearch();
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (!mobileMenu.classList.contains('hidden')) toggleMobileMenu();
+      }
+    });
+
+    // ======== MOBILE MENU ========
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      menu.classList.toggle('hidden');
+      icon.setAttribute('icon', menu.classList.contains('hidden') ? 'lucide:menu' : 'lucide:x');
+    }
+
+    // ======== TOAST NOTIFICATIONS ========
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      const colors = {
+        success: 'border-green-500/30 bg-green-500/10',
+        info: 'border-brand-500/30 bg-brand-500/10',
+        error: 'border-red-500/30 bg-red-500/10'
+      };
+      const icons = {
+        success: 'lucide:check-circle',
+        info: 'lucide:info',
+        error: 'lucide:alert-circle'
+      };
+      const iconColors = {
+        success: 'text-green-400',
+        info: 'text-brand-400',
+        error: 'text-red-400'
+      };
+      
+      toast.className = `toast-in flex items-center gap-3 px-4 py-3 rounded-xl border ${colors[type]} text-sm text-white min-w-[280px] max-w-sm shadow-lg`;
+      toast.style.backdropFilter = 'blur(12px)';
+      toast.innerHTML = `
+        <iconify-icon icon="${icons[type]}" width="18" class="${iconColors[type]}"></iconify-icon>
+        <span class="flex-1">${message}</span>
+        <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white"><iconify-icon icon="lucide:x" width="14"></iconify-icon></button>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('toast-in');
+        toast.classList.add('toast-out');
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    // ======== SUBSCRIBE ========
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value;
+      showToast(`Subscribed with ${email}! You'll get updates soon.`, 'success');
+      document.getElementById('email-input').value = '';
+    }
+
+    // ======== NAVBAR SCROLL EFFECT ========
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      const scrollY = window.scrollY;
+      
+      if (scrollY > 100) {
+        navbar.style.background = 'rgba(15,23,42,0.95)';
+        navbar.style.borderBottomColor = 'rgba(51,65,85,0.8)';
+      } else {
+        navbar.style.background = 'rgba(15,23,42,0.85)';
+        navbar.style.borderBottomColor = 'rgba(51,65,85,0.5)';
+      }
+      lastScroll = scrollY;
+    });
+  </script>
 </body>
 </html>
