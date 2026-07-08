@@ -3,119 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | KDK M.NET</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>KDKM.NET - Contact Us</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #111; color: #fff; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 6%; background: #000; }
+        .logo { font-size: 28px; font-weight: bold; color: #e50914; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        
+        .contact-container { max-width: 600px; margin: 60px auto; padding: 30px; background: #222; border-radius: 8px; }
+        .contact-container h2 { margin-bottom: 20px; text-align: center; }
+        .form-input { width: 100%; padding: 12px; background: #333; border: none; color: white; margin-bottom: 15px; border-radius: 4px; font-size: 16px; }
+        textarea.form-input { height: 150px; resize: none; }
+        .btn-send { background: #e50914; color: white; width: 100%; padding: 12px; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        .btn-send:hover { background: #b80710; }
+    </style>
 </head>
-
 <body>
 
-<header>
+    <nav>
+        <div class="logo">KDKM.NET</div>
+        <ul class="nav-links">
+            <li><a href="index.html" style="color:#fff; text-decoration:none;">Home</a></li>
+            <li><a href="movies.html" style="color:#fff; text-decoration:none;">Movies</a></li>
+            <li><a href="contact.html" style="color: #e50914; text-decoration:none;">Contact</a></li>
+        </ul>
+    </nav>
 
-<div class="logo">
-KDK <span>M.NET</span>
-</div>
+    <div class="contact-container">
+        <h2>Contact Support / Request Movies</h2>
+        <form id="contactForm">
+            <input type="text" class="form-input" placeholder="Your Name" required>
+            <input type="email" class="form-input" placeholder="Your Email Address" required>
+            <textarea class="form-input" placeholder="Write your movie request or message here..." required></textarea>
+            <button type="submit" class="btn-send">Send Message</button>
+        </form>
+    </div>
 
-<nav>
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="movies.html">Movies</a></li>
-<li><a href="contact.html" class="active">Contact</a></li>
-<li><a href="login.html">Login</a></li>
-</ul>
-</nav>
-
-</header>
-
-<section class="contact-page">
-
-<div class="contact-container">
-
-<h1>Contact KDK M.NET</h1>
-
-<p>
-Have a question, suggestion, or business inquiry?
-Send us a message below.
-</p>
-
-<form action="#" method="post">
-
-<div class="input-box">
-<label>Full Name</label>
-<input type="text" placeholder="Enter your full name" required>
-</div>
-
-<div class="input-box">
-<label>Email Address</label>
-<input type="email" placeholder="Enter your email" required>
-</div>
-
-<div class="input-box">
-<label>Subject</label>
-<input type="text" placeholder="Subject" required>
-</div>
-
-<div class="input-box">
-<label>Message</label>
-<textarea rows="6" placeholder="Write your message here..." required></textarea>
-</div>
-
-<button type="submit" class="send-btn">
-<i class="fa-solid fa-paper-plane"></i>
-Send Message
-</button>
-
-</form>
-
-<div class="contact-info">
-
-<h2>Our Contact Information</h2>
-
-<p>
-<i class="fa-solid fa-envelope"></i>
-Email: support@kdkm.net
-</p>
-
-<p>
-<i class="fa-solid fa-phone"></i>
-Phone: +256 XXX XXX XXX
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Kampala, Uganda
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-<p>© 2026 KDK M.NET. All Rights Reserved.</p>
-
-<div class="social">
-
-<a href="#"><i class="fab fa-facebook"></i></a>
-
-<a href="#"><i class="fab fa-instagram"></i></a>
-
-<a href="#"><i class="fab fa-youtube"></i></a>
-
-<a href="#"><i class="fab fa-tiktok"></i></a>
-
-</div>
-
-</footer>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
