@@ -3,267 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KDK M.NET | Watch Movies Online</title>
+    <title>KDKM.NET - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-weight/6.4.0/css/all.min.css">
+    <style>
+        /* Shared Global Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #111; color: #fff; }
+        a { text-decoration: none; color: #fff; }
+        
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 6%; background: rgba(0,0,0,0.8); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 28px; font-weight: bold; color: #e50914; letter-spacing: 1px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links a:hover { color: #e50914; transition: 0.3s; }
+        .btn-login { background: #e50914; padding: 7px 15px; border-radius: 4px; }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+        /* Hero Section */
+        .hero { height: 70vh; background: linear-gradient(rgba(0,0,0,0.2), rgba(17,17,17,1)), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925') no-repeat center center/cover; display: flex; flex-direction: column; justify-content: center; padding-left: 6%; }
+        .hero h1 { font-size: 50px; margin-bottom: 10px; }
+        .hero p { font-size: 18px; max-width: 600px; margin-bottom: 20px; color: #ccc; }
+        .btn-main { background: #e50914; padding: 12px 25px; font-weight: bold; border-radius: 4px; display: inline-block; width: max-content; }
+        .btn-main:hover { background: #b80710; }
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        /* Movie Sections */
+        .main-container { padding: 40px 6%; }
+        .section-title { font-size: 24px; margin-bottom: 20px; border-left: 4px solid #e50914; padding-left: 10px; }
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .movie-card { background: #222; border-radius: 8px; overflow: hidden; transition: transform 0.3s; position: relative; }
+        .movie-card:hover { transform: scale(1.05); }
+        .movie-card img { width: 100%; height: 300px; object-fit: cover; }
+        .movie-info { padding: 15px; }
+        .movie-info h4 { font-size: 16px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .rating { color: #f5c518; font-size: 14px; }
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        /* Footer */
+        footer { text-align: center; padding: 30px; background: #000; color: #666; font-size: 14px; margin-top: 40px; }
+    </style>
 </head>
-
 <body>
 
-<!-- Navigation -->
-<header>
-
-<div class="logo">
-    KDK <span>M.NET</span>
-</div>
-
-<nav>
-
-<ul>
-
-<li><a href="#">Home</a></li>
-<li><a href="movies.html">Movies</a></li>
-<li><a href="#">TV Series</a></li>
-<li><a href="#">Top Rated</a></li>
-<li><a href="#">New Releases</a></li>
-<li><a href="contact.html">Contact</a></li>
-
-</ul>
-
-</nav>
-
-<div class="search">
-
-<input type="text" placeholder="Search movies...">
-
-<button>
-<i class="fa fa-search"></i>
-</button>
-
-</div>
-
-<div class="login">
-
-<a href="login.html">Login</a>
-
-</div>
-
-</header>
-
-<!-- Hero -->
-
-<section class="hero">
-
-<div class="overlay">
-
-<div class="hero-content">
-
-<h1>Unlimited Movies,<br>Unlimited Entertainment</h1>
-
-<p>
-Watch the latest movies anytime,
-anywhere in HD quality.
-</p>
-
-<div class="buttons">
-
-<a href="#" class="watch">Watch Now</a>
-
-<a href="#" class="download">Download</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Trending -->
-
-<section class="section">
-
-<h2>🔥 Trending Movies</h2>
-
-<div class="movies">
-
-<div class="movie">
-
-<img src="images/movie1.jpg">
-
-<h3>Movie One</h3>
-
-<p>⭐⭐⭐⭐☆</p>
-
-<button>Watch</button>
-
-</div>
-
-<div class="movie">
-
-<img src="images/movie2.jpg">
-
-<h3>Movie Two</h3>
-
-<p>⭐⭐⭐⭐⭐</p>
-
-<button>Watch</button>
-
-</div>
-
-<div class="movie">
-
-<img src="images/movie3.jpg">
-
-<h3>Movie Three</h3>
-
-<p>⭐⭐⭐☆☆</p>
-
-<button>Watch</button>
-
-</div>
-
-<div class="movie">
-
-<img src="images/movie4.jpg">
-
-<h3>Movie Four</h3>
-
-<p>⭐⭐⭐⭐☆</p>
-
-<button>Watch</button>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Categories -->
-
-<section class="section">
-
-<h2>Browse Categories</h2>
-
-<div class="categories">
-
-<div>🎬 Action</div>
-
-<div>😂 Comedy</div>
-
-<div>👻 Horror</div>
-
-<div>❤️ Romance</div>
-
-<div>🚀 Sci-Fi</div>
-
-<div>🧙 Fantasy</div>
-
-<div>🔫 Crime</div>
-
-<div>🎭 Drama</div>
-
-</div>
-
-</section>
-
-<!-- Latest -->
-
-<section class="section">
-
-<h2>Latest Uploads</h2>
-
-<div class="movies">
-
-<div class="movie">
-
-<img src="images/movie5.jpg">
-
-<h3>Movie Five</h3>
-
-<button>Watch</button>
-
-</div>
-
-<div class="movie">
-
-<img src="images/movie6.jpg">
-
-<h3>Movie Six</h3>
-
-<button>Watch</button>
-
-</div>
-
-<div class="movie">
-
-<img src="images/movie7.jpg">
-
-<h3>Movie Seven</h3>
-
-<button>Watch</button>
-
-</div>
-
-<div class="movie">
-
-<img src="images/movie8.jpg">
-
-<h3>Movie Eight</h3>
-
-<button>Watch</button>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Footer -->
-
-<footer>
-
-<div class="footer-logo">
-
-KDK M.NET
-
-</div>
-
-<p>
-
-The home of unlimited entertainment.
-
-</p>
-
-<div class="social">
-
-<i class="fab fa-facebook"></i>
-
-<i class="fab fa-instagram"></i>
-
-<i class="fab fa-youtube"></i>
-
-<i class="fab fa-tiktok"></i>
-
-</div>
-
-<p>
-
-© 2026 KDK M.NET. All Rights Reserved.
-
-</p>
-
-</footer>
-
-<script src="script.js"></script>
+    <nav>
+        <div class="logo">KDKM.NET</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="movies.html">Movies</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn-login">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h1>Unlimited Movies & Downloads</h1>
+        <p>Discover the latest blockbuster movies, trending shows, and hidden gems. Download instantly in high quality.</p>
+        <a href="movies.html" class="btn-main">Browse Movies</a>
+    </div>
+
+    <div class="main-container">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="movie-grid">
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059" alt="Movie Poster">
+                <div class="movie-info">
+                    <h4>Cinematic Horizons</h4>
+                    <div class="rating">⭐ 8.5</div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1974" alt="Movie Poster">
+                <div class="movie-info">
+                    <h4>The Cyber Realm</h4>
+                    <div class="rating">⭐ 7.9</div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1947" alt="Movie Poster">
+                <div class="movie-info">
+                    <h4>Lost in Space</h4>
+                    <div class="rating">⭐ 9.1</div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1920" alt="Movie Poster">
+                <div class="movie-info">
+                    <h4>Shadow Ninja</h4>
+                    <div class="rating">⭐ 6.4</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 KDKM.NET. All Rights Reserved. Powered by GitHub.
+    </footer>
 
 </body>
 </html>
