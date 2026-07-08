@@ -1,74 +1,69 @@
-// 1. Mobile Responsive Menu Toggle
-const mobileMenu = document.getElementById('mobileMenu');
-const navLinks = document.getElementById('navLinks');
-
-if (mobileMenu && navLinks) {
-    mobileMenu.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+// === VIDEO PLAYER LOGIC ===
+function playMovie(movieUrl) {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('internalPlayer');
+    const source = video.querySelector('source');
+    
+    // Set the video source
+    source.src = movieUrl;
+    video.load(); // Load the new video
+    video.play(); // Autoplay
+    
+    modal.style.display = 'flex';
 }
 
-// 2. Automated Hero Header Slider (Homepage)
-const slides = document.querySelectorAll('.slide');
-if (slides.length > 0) {
-    let currentSlide = 0;
-    setInterval(() => {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }, 5000); // Transitions every 5 seconds
+function closeMovie() {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('internalPlayer');
+    
+    video.pause();
+    video.currentTime = 0; // Reset video
+    modal.style.display = 'none';
 }
 
-// 3. Dynamic Quick-View Popups (Modal Layout)
-function openPreview(title, description, imgUrl) {
-    const modal = document.getElementById('previewModal');
-    if (modal) {
-        document.getElementById('modalTitle').innerText = title;
-        document.getElementById('modalDesc').innerText = description;
-        document.getElementById('modalImg').src = imgUrl;
-        modal.style.display = 'flex';
+// Close modal if user clicks outside the video
+window.onclick = function(event) {
+    const modal = document.getElementById('videoModal');
+    if (event.target == modal) {
+        closeMovie();
     }
 }
 
-function closePreview() {
-    const modal = document.getElementById('previewModal');
-    if (modal) {
-        modal.style.display = 'none';
+
+// === AUTH & DASHBOARD LOGIC ===
+let isLogin = true;
+
+function toggleAuth() {
+    isLogin = !isLogin;
+    const formTitle = document.getElementById('formTitle');
+    const submitBtn = document.getElementById('submitBtn');
+    const toggleText = document.getElementById('toggleText');
+    const nameField = document.getElementById('nameField');
+
+    if (isLogin) {
+        formTitle.innerText = "Sign In";
+        submitBtn.innerText = "Sign In";
+        toggleText.innerText = "Don't have an account? Sign Up";
+        nameField.style.display = "none";
+    } else {
+        formTitle.innerText = "Create Account";
+        submitBtn.innerText = "Sign Up";
+        toggleText.innerText = "Already have an account? Sign In";
+        nameField.style.display = "block";
     }
 }
 
-// Close popup safely if user clicks background shade overlay
-window.addEventListener('click', (e) => {
-    const modal = document.getElementById('previewModal');
-    if (e.target === modal) {
-        modal.style.display = 'none';
-    }
-});
-
-// 4. Live Title Filtering Engine (Movies Page Search)
-const searchBox = document.getElementById('searchBox');
-if (searchBox) {
-    searchBox.addEventListener('keyup', (e) => {
-        const queryText = e.target.value.toLowerCase();
-        const cards = document.querySelectorAll('.movie-card');
-
-        cards.forEach(card => {
-            const keys = card.getAttribute('data-title').toLowerCase();
-            if (keys.includes(queryText)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
+function handleAuth(event) {
+    event.preventDefault();
+    // Simulate account creation / login
+    document.getElementById('authForm').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
 }
 
-// 5. Standard Form Handlers
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Thank you! Your inquiry or download server query has been registered.');
-        contactForm.reset();
-    });
+function logout() {
+    // Simulate logging out
+    document.getElementById('authForm').style.display = 'block';
+    document.getElementById('dashboard').style.display = 'none';
+    isLogin = true;
+    toggleAuth(); // Reset to login screen
 }
