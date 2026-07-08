@@ -1,10 +1,28 @@
-// script.js
-document.querySelector("button").addEventListener("click", function() {
-  let query = document.querySelector("input").value.toLowerCase();
-  let movies = document.querySelectorAll(".movie-card");
-  
-  movies.forEach(card => {
-    let title = card.querySelector("h3").textContent.toLowerCase();
-    card.style.display = title.includes(query) ? "block" : "none";
-  });
-});
+// Movie Filtering System for movies.html
+const searchBox = document.getElementById('searchBox');
+
+if (searchBox) {
+    searchBox.addEventListener('keyup', function(e) {
+        const text = e.target.value.toLowerCase();
+        const movieCards = document.querySelectorAll('.movie-card');
+
+        movieCards.forEach(card => {
+            const titleAttr = card.getAttribute('data-title').toLowerCase();
+            if (titleAttr.includes(text)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+}
+
+// Interactive alert logic for the Contact form
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you! Your message/movie request has been sent successfully.');
+        contactForm.reset();
+    });
+}
