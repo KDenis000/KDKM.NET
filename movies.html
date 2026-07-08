@@ -4,34 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KDKM.NET - Library</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Use the same basic styles as index.html */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background-color: #111; color: #fff; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 6%; background: rgba(0,0,0,0.8); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 6%; background: rgba(0,0,0,0.9); }
         .logo { font-size: 28px; font-weight: bold; color: #e50914; }
         .nav-links { list-style: none; display: flex; gap: 20px; align-items: center; }
         .btn-login { background: #e50914; padding: 7px 15px; border-radius: 4px; }
+        .menu-toggle { display: none; font-size: 24px; cursor: pointer; }
         
         .container { padding: 40px 6%; }
-        .search-bar { width: 100%; max-width: 500px; padding: 12px; border-radius: 25px; border: none; background: #222; color: #fff; font-size: 16px; margin-bottom: 30px; display: block; }
+        .search-bar { width: 100%; max-width: 500px; padding: 14px 20px; border-radius: 25px; border: 1px solid #333; background: #222; color: #fff; font-size: 16px; margin-bottom: 35px; display: block; outline: none; }
+        .search-bar:focus { border-color: #e50914; }
         
         .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
-        .movie-card { background: #222; border-radius: 8px; overflow: hidden; transition: 0.3s; }
-        .movie-card:hover { transform: translateY(-5px); }
+        .movie-card { background: #1c1c1c; border-radius: 8px; overflow: hidden; transition: 0.3s; border: 1px solid #252525; }
+        .movie-card:hover { transform: translateY(-5px); border-color: #444; }
         .movie-card img { width: 100%; height: 320px; object-fit: cover; }
         .movie-info { padding: 15px; }
-        .movie-info h4 { margin-bottom: 10px; font-size: 18px; }
-        .btn-download { display: block; text-align: center; background: #e50914; color: white; padding: 10px; border-radius: 4px; font-weight: bold; margin-top: 10px; text-decoration: none; }
+        .movie-info h4 { margin-bottom: 5px; font-size: 18px; }
+        .movie-info p { color: #888; font-size: 14px; margin-bottom: 12px; }
+        .btn-download { display: block; text-align: center; background: #e50914; color: white; padding: 10px; border-radius: 4px; font-weight: bold; text-decoration: none; transition: 0.2s; }
         .btn-download:hover { background: #b80710; }
+        
         footer { text-align: center; padding: 30px; background: #000; color: #666; margin-top: 40px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: #000; padding: 20px; gap: 15px; text-align: center; z-index: 1000; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">KDKM.NET</div>
-        <ul class="nav-links">
+        <div class="menu-toggle" id="mobileMenu"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="movies.html" style="color: #e50914;">Movies</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -40,32 +51,32 @@
     </nav>
 
     <div class="container">
-        <h2>All Movies</h2>
-        <input type="text" id="searchBox" class="search-bar" placeholder="Search movies by title...">
+        <h2>Explore Catalog</h2>
+        <input type="text" id="searchBox" class="search-bar" placeholder="🔍 Search files or keywords...">
         
         <div class="movie-grid" id="movieGrid">
-            <div class="movie-card" data-title="action adventure lost space">
+            <div class="movie-card" data-title="lost in space sci-fi action">
                 <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1947" alt="Movie">
                 <div class="movie-info">
                     <h4>Lost in Space</h4>
-                    <p style="color: #aaa; font-size: 14px;">Sci-Fi / Action</p>
-                    <a href="#" class="btn-download">Download</a>
+                    <p>Sci-Fi / Action</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
-            <div class="movie-card" data-title="cyber realm hacker action">
+            <div class="movie-card" data-title="the cyber realm thriller hacker">
                 <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1974" alt="Movie">
                 <div class="movie-info">
                     <h4>The Cyber Realm</h4>
-                    <p style="color: #aaa; font-size: 14px;">Thriller</p>
-                    <a href="#" class="btn-download">Download</a>
+                    <p>Thriller</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
-            <div class="movie-card" data-title="horror dark night shadows">
+            <div class="movie-card" data-title="midnight whispers horror scary night">
                 <img src="https://images.unsplash.com/photo-1505635552518-3448ff116af3?q=80&w=1964" alt="Movie">
                 <div class="movie-info">
                     <h4>Midnight Whispers</h4>
-                    <p style="color: #aaa; font-size: 14px;">Horror</p>
-                    <a href="#" class="btn-download">Download</a>
+                    <p>Horror</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
         </div>
