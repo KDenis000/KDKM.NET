@@ -1,31 +1,78 @@
-<section class="movie-grid">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDKM.NET - Library</title>
+    <style>
+        /* Use the same basic styles as index.html */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #111; color: #fff; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 6%; background: rgba(0,0,0,0.8); }
+        .logo { font-size: 28px; font-weight: bold; color: #e50914; }
+        .nav-links { list-style: none; display: flex; gap: 20px; align-items: center; }
+        .btn-login { background: #e50914; padding: 7px 15px; border-radius: 4px; }
+        
+        .container { padding: 40px 6%; }
+        .search-bar { width: 100%; max-width: 500px; padding: 12px; border-radius: 25px; border: none; background: #222; color: #fff; font-size: 16px; margin-bottom: 30px; display: block; }
+        
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        .movie-card { background: #222; border-radius: 8px; overflow: hidden; transition: 0.3s; }
+        .movie-card:hover { transform: translateY(-5px); }
+        .movie-card img { width: 100%; height: 320px; object-fit: cover; }
+        .movie-info { padding: 15px; }
+        .movie-info h4 { margin-bottom: 10px; font-size: 18px; }
+        .btn-download { display: block; text-align: center; background: #e50914; color: white; padding: 10px; border-radius: 4px; font-weight: bold; margin-top: 10px; text-decoration: none; }
+        .btn-download:hover { background: #b80710; }
+        footer { text-align: center; padding: 30px; background: #000; color: #666; margin-top: 40px; }
+    </style>
+</head>
+<body>
 
-  <div class="movie-card">
-    <img src="images/inception.jpg" alt="Inception">
-    <h3>Inception</h3>
-    <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-alt"></i></p>
-    <button>Watch Now</button>
-  </div>
+    <nav>
+        <div class="logo">KDKM.NET</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="movies.html" style="color: #e50914;">Movies</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn-login">Login</a></li>
+        </ul>
+    </nav>
 
-  <div class="movie-card">
-    <img src="images/avatar2.jpg" alt="Avatar: The Way of Water">
-    <h3>Avatar: The Way of Water</h3>
-    <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
-    <button>Watch Now</button>
-  </div>
+    <div class="container">
+        <h2>All Movies</h2>
+        <input type="text" id="searchBox" class="search-bar" placeholder="Search movies by title...">
+        
+        <div class="movie-grid" id="movieGrid">
+            <div class="movie-card" data-title="action adventure lost space">
+                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1947" alt="Movie">
+                <div class="movie-info">
+                    <h4>Lost in Space</h4>
+                    <p style="color: #aaa; font-size: 14px;">Sci-Fi / Action</p>
+                    <a href="#" class="btn-download">Download</a>
+                </div>
+            </div>
+            <div class="movie-card" data-title="cyber realm hacker action">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1974" alt="Movie">
+                <div class="movie-info">
+                    <h4>The Cyber Realm</h4>
+                    <p style="color: #aaa; font-size: 14px;">Thriller</p>
+                    <a href="#" class="btn-download">Download</a>
+                </div>
+            </div>
+            <div class="movie-card" data-title="horror dark night shadows">
+                <img src="https://images.unsplash.com/photo-1505635552518-3448ff116af3?q=80&w=1964" alt="Movie">
+                <div class="movie-info">
+                    <h4>Midnight Whispers</h4>
+                    <p style="color: #aaa; font-size: 14px;">Horror</p>
+                    <a href="#" class="btn-download">Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <div class="movie-card">
-    <img src="images/joker.jpg" alt="Joker">
-    <h3>Joker</h3>
-    <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
-    <button>Watch Now</button>
-  </div>
+    <footer>&copy; 2026 KDKM.NET</footer>
 
-  <div class="movie-card">
-    <img src="images/blackpanther.jpg" alt="Black Panther">
-    <h3>Black Panther</h3>
-    <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-alt"></i></p>
-    <button>Watch Now</button>
-  </div>
-
-</section>
+    <script src="script.js"></script>
+</body>
+</html>
